@@ -1,9 +1,9 @@
 #ifndef SOME_H
 #define SOME_H
 
-namespace some
+namespace sm
 {
-    namespace someLibrary
+    namespace lbr
     {
         void printSomething();
     }

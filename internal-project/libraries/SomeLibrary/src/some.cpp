@@ -1,9 +1,9 @@
 #include <iostream>
 #include "things.h"
 
-namespace some
+namespace sm
 {
-    namespace someLibrary
+    namespace lbr
     {
         void printSomething()
         {

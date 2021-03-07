@@ -1,6 +1,6 @@
 cmake_minimum_required(VERSION 3.15)
 
-project("another-application" VERSION 0.9)
+project("another-application" VERSION 0.9 DESCRIPTION "A project with external library")
 
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -12,6 +12,6 @@ set(sources
     main.cpp
 )
 
-add_executable(${CMAKE_PROJECT_NAME} ${sources})
+add_executable(${PROJECT_NAME} ${sources})
 
-target_link_libraries(${CMAKE_PROJECT_NAME} PRIVATE some::SomeLibrary)
+target_link_libraries(${PROJECT_NAME} PRIVATE some::SomeLibrary)

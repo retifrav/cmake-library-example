@@ -23,20 +23,12 @@ set(sources
 
 add_library(${PROJECT_NAME} STATIC ${sources})
 
-target_include_directories(${PROJECT_NAME}
-    PRIVATE
-        # where the library itself will look for its internal headers
-        ${CMAKE_CURRENT_SOURCE_DIR}/src
-    PUBLIC
-        # where top-level project will look for the library's public headers
-        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
-        # where external projects will look for the library's public headers
-        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-)
-
-# compile options for this target only
-# treat warnings as errors
-target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
+# not for MSVC
+if(CMAKE_COMPILER_IS_GNUCXX)
+    # compile options for this target only
+    # treat warnings as errors
+    target_compile_options(${PROJECT_NAME} PRIVATE -Werror)
+endif()
 
 # note that it is not CMAKE_INSTALL_PREFIX we are checking here
 if(DEFINED CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
@@ -57,6 +49,17 @@ else()
         "Current value: ${CMAKE_INSTALL_PREFIX}"
     )
 endif()
+
+target_include_directories(${PROJECT_NAME}
+    PRIVATE
+        # where the library itself will look for its internal headers
+        ${CMAKE_CURRENT_SOURCE_DIR}/src
+    PUBLIC
+        # where top-level project will look for the library's public headers
+        $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
+        # where external projects will look for the library's public headers
+        $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
 
 # without it public headers won't get installed
 set(public_headers

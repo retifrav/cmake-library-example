@@ -7,10 +7,11 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 add_subdirectory(libraries)
 
-set(sources
-    main.cpp
-)
+add_executable(${PROJECT_NAME})
 
-add_executable(${PROJECT_NAME} ${sources})
+target_sources(${PROJECT_NAME}
+    PRIVATE
+        main.cpp
+)
 
 target_link_libraries(${PROJECT_NAME} PRIVATE SomeLibrary)

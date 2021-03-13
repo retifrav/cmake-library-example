@@ -6,7 +6,7 @@ set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
 set(CMAKE_PREFIX_PATH "/path/to/someLibrary/install")
-find_package(SomeLibrary CONFIG REQUIRED)
+find_package(SomeLibrary 0.9.1 CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME})
 

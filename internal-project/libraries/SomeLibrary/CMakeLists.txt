@@ -48,4 +48,3 @@ set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/cmake")
 #message(STATUS "CMake module path: ${CMAKE_MODULE_PATH}")
 
 include(Installing)
-include(Packing)

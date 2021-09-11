@@ -29,18 +29,20 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "d")
 
 install(TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
+    # these get default values from GNUInstallDirs, no need to set them
+    #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
+    #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
+    #ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
+    # except for public headers, as we want them to be inside a library folder
+    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/SomeProject
     INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} # include
-    PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/SomeLibrary
 )
 
 # generate and install export file
 install(EXPORT "${PROJECT_NAME}Targets"
-        FILE "${PROJECT_NAME}Targets.cmake"
-        NAMESPACE ${namespace}::
-        DESTINATION cmake
+    FILE "${PROJECT_NAME}Targets.cmake"
+    NAMESPACE ${namespace}::
+    DESTINATION cmake
 )
 
 include(CMakePackageConfigHelpers)

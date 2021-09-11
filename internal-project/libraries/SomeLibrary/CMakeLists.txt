@@ -15,9 +15,6 @@ endif()
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-# for clangd
-set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
-
 add_library(${PROJECT_NAME} STATIC)
 
 target_sources(${PROJECT_NAME}
@@ -34,6 +31,11 @@ target_include_directories(${PROJECT_NAME}
         $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>
         # where external projects will look for the library's public headers
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
+)
+
+# without it public headers won't get installed
+set(public_headers
+    include/some.h
 )
 
 # not for MSVC

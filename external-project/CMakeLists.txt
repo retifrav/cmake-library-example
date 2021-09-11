@@ -5,7 +5,7 @@ project("another-application" VERSION 0.9 DESCRIPTION "A project with external l
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_PREFIX_PATH "/path/to/someLibrary/install")
+#set(CMAKE_PREFIX_PATH "/path/to/someLibrary/install")
 find_package(SomeLibrary 0.9.1 CONFIG REQUIRED)
 
 add_executable(${PROJECT_NAME})

@@ -22,10 +22,6 @@ else()
     )
 endif()
 
-# without it public headers won't get installed
-set(public_headers
-    include/some.h
-)
 # note that ${public_headers} should be in quotes
 set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${public_headers}")
 
@@ -33,12 +29,13 @@ set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "d")
 
 install(TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
-    #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
-    #LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
-    #ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
-    #INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} # include
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR} # lib
+    INCLUDES DESTINATION ${CMAKE_INSTALL_INCLUDEDIR} # include
     PUBLIC_HEADER DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/${PROJECT_NAME} # include/SomeLibrary
 )
+
 # generate and install export file
 install(EXPORT "${PROJECT_NAME}Targets"
         FILE "${PROJECT_NAME}Targets.cmake"
@@ -48,11 +45,13 @@ install(EXPORT "${PROJECT_NAME}Targets"
 
 include(CMakePackageConfigHelpers)
 
+# generate the version file for the config file
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     VERSION "${version}"
     COMPATIBILITY AnyNewerVersion
 )
+# create config file
 configure_package_config_file(${CMAKE_CURRENT_SOURCE_DIR}/Config.cmake.in
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}Config.cmake"
     INSTALL_DESTINATION cmake

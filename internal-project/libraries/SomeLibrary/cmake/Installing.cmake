@@ -31,8 +31,6 @@ set_target_properties(${PROJECT_NAME} PROPERTIES PUBLIC_HEADER "${public_headers
 
 set_target_properties(${PROJECT_NAME} PROPERTIES DEBUG_POSTFIX "d")
 
-include(CMakePackageConfigHelpers)
-
 install(TARGETS ${PROJECT_NAME}
     EXPORT "${PROJECT_NAME}Targets"
     #RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR} # bin
@@ -47,6 +45,9 @@ install(EXPORT "${PROJECT_NAME}Targets"
         NAMESPACE ${namespace}::
         DESTINATION cmake
 )
+
+include(CMakePackageConfigHelpers)
+
 write_basic_package_version_file(
     "${CMAKE_CURRENT_BINARY_DIR}/${PROJECT_NAME}ConfigVersion.cmake"
     VERSION "${version}"

@@ -33,6 +33,23 @@ target_include_directories(${PROJECT_NAME}
         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
 )
 
+# totally optional listing of include directories
+get_property(inclds
+    TARGET ${PROJECT_NAME}
+    PROPERTY INCLUDE_DIRECTORIES
+)
+message(STATUS "Listing include directories for ${PROJECT_NAME}...")
+# "dumb" listing with "raw" generator expressions on configuration
+foreach(pth ${inclds})
+    message(STATUS "  ${pth}")
+endforeach()
+# actually evaluated generator expressions printed to file on generation
+string(JOIN "\n" includeDirectories ${inclds})
+file(GENERATE
+    OUTPUT "${CMAKE_BINARY_DIR}/include-directories.txt"
+    CONTENT ${includeDirectories}
+)
+
 # without it public headers won't get installed
 set(public_headers
     include/some.h

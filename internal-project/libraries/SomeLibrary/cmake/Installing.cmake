@@ -17,7 +17,7 @@ if(DEFINED CMAKE_INSTALL_PREFIX_INITIALIZED_TO_DEFAULT)
 else()
     message(
         STATUS
-        "CMAKE_INSTALL_PREFIX was already set\n"
+        "CMAKE_INSTALL_PREFIX has been already set. "
         "Current value: ${CMAKE_INSTALL_PREFIX}"
     )
 endif()

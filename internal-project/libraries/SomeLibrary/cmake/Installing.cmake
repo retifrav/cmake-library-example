@@ -64,7 +64,8 @@ install(FILES
     DESTINATION cmake
 )
 # generate the export targets for the build tree
-export(EXPORT "${PROJECT_NAME}Targets"
-    FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${PROJECT_NAME}Targets.cmake"
-    NAMESPACE ${namespace}::
-)
+# (can't say what this one is for, but so far it has been only causing me problems)
+# export(EXPORT "${PROJECT_NAME}Targets"
+#     FILE "${CMAKE_CURRENT_BINARY_DIR}/cmake/${PROJECT_NAME}Targets.cmake"
+#     NAMESPACE ${namespace}::
+# )
